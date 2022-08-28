@@ -1,2 +1,13 @@
 # Project-VF
 Team VF에서 제작 중인 VF입니다!
+## 개발
+기획 및 총괄 : 이정배#8121<br>
+메인 개발 : ! byeolki#8761
+### 언어 및 사용 모듈
+<img src="https://img.shields.io/badge/python-4374D9?style=for-the-badge&logo=python&logoColor=white">, wavelink
+## 기능
+음악 재생
++추가 개발 예정
+
+## 에러
+에러가 있을시 ! byeolki#8761 로 알려주세요!
