@@ -1,8 +1,5 @@
-# Project-VF
-Team VF에서 제작 중인 VF입니다!
-## 개발
-기획 및 총괄 : 이정배#8121<br>
-메인 개발 : ! byeolki#8761
+# Project-UZU
+Team timeless에서 제작 중인 VF입니다!
 ### 언어 및 모듈
 wavelink, python
 ## 기능
