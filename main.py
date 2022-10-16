@@ -31,9 +31,35 @@ async def on_ready():
 async def change_status(status):
     await client.change_presence(activity=nextcord.Streaming(name=next(status), url='https://www.twitch.tv/your_channel_here'))
 
+@client.event
+async def on_voice_state_update(member, before=None, after=None):
+    voice_state = member.guild.voice_client
+
+    vc : nextwave.Player = voice_state
+    if voice_state is None:
+        return 
+
+    if len(voice_state.channel.members) == 1:
+        await vc.pause()
+    
+    elif len(voice_state.channel.members) > 1:
+        await vc.resume()
+
+    if after.channel is None:
+        if f"{vc.guild.id}" in MusicCh.keys():
+            MusicCh.pop(member.guild.id)
+            Playing.pop(member.guild.id)
+        
+        vc.queue.clear()
+
+@client.event
+async def on_wavelink_node_ready(node : nextwave.Node):
+    print(f"{node.identifier} 실행됨")
+
+
 async def node_connect():
     await client.wait_until_ready()
-    await nextwave.NodePool.create_node(bot=client, host='lava.link', port=80, password='dismusic', spotify_client=spotify.SpotifyClient(client_id='스포티파이 API 아이디', client_secret='스포티파이 API 토큰'))
+    await nextwave.NodePool.create_node(bot=client, host='lava.link', port=80, password='dismusic', spotify_client=spotify.SpotifyClient(client_id='4a4e4a4a93874eee834a26fbadfc9d17', client_secret='bc721d32e59b4859826440c0422b25f6'))
 
 async def check_voice(user:nextcord.Member, vc: int):
     try: user.voice.channel
@@ -60,32 +86,7 @@ def embed_maker(array, user_id):
     embed.add_field(name="유저", value=f"{user.mention}", inline=True)
     embed.set_thumbnail(url = f"https://img.youtube.com/vi/{array.identifier}/mqdefault.jpg")
     return embed
-
-@client.event
-async def on_voice_state_update(member, before=None, after=None):
-    voice_state = member.guild.voice_client
-
-    vc : nextwave.Player = voice_state
-    if voice_state is None:
-        return 
-
-    if len(voice_state.channel.members) == 1:
-        await vc.pause()
     
-    elif len(voice_state.channel.members) > 1:
-        await vc.resume()
-
-    if after.channel is None:
-        if f"{vc.guild.id}" in MusicCh.keys():
-            MusicCh.pop(member.guild.id)
-            Playing.pop(member.guild.id)
-        
-        vc.queue.clear()
-
-@client.event
-async def on_wavelink_node_ready(node : nextwave.Node):
-    print(f"{node.identifier} 실행됨")
-
 @client.event
 async def on_wavelink_track_end(player : nextwave.Player , track : nextwave.Track , reason):
     if reason != "REPLACED":
@@ -395,5 +396,5 @@ class MusicPlayer(ui.View):
         else:
             await inter.send("봇과 같은 음성채널에 입장해주세요!", ephemeral = True)
 
-TOKEN = "토큰"
+TOKEN = 토큰
 client.run(TOKEN)
