@@ -1,5 +1,5 @@
 # Project-UZU
-Team timeless에서 제작 중인 UZU입니다! (미개발)
+Team timeless에서 제작 중인 UZU입니다! (개발 종료)
 ### 언어 및 모듈
 wavelink, python
 ## 기능
