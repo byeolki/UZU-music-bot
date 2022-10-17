@@ -1,5 +1,5 @@
 # Project-UZU
-Team timeless에서 제작 중인 UZU입니다! (개발 종료)
+Team timeless 소속으로 제작이 종료된 디스코드 봇입니다!
 ### 언어 및 모듈
 wavelink, python
 ## 기능
